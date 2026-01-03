@@ -1,0 +1,17 @@
+{
+	"name": "SourceDataset_xwt",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ds_cases_deaths_raw_csv_http",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

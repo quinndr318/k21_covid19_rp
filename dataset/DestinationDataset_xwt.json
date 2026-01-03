@@ -1,0 +1,20 @@
+{
+	"name": "DestinationDataset_xwt",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "k21covidstorageacct19_gen2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "https://raw.githubusercontent.com/hbuddana/Azure_Data_Factory_COVID-19_Reporting/refs/heads/main/dataset/ds_ecdc_file_list.json",
+				"folderPath": "ecdc",
+				"fileSystem": "raw"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

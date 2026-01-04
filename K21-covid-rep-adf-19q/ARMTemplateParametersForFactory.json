@@ -1,0 +1,24 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "K21-covid-rep-adf-19q"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"value": ""
+		},
+		"k21covidstorageacct19_gen2_accountKey": {
+			"value": ""
+		},
+		"ls_k21covidstorageacct19_connectionString": {
+			"value": ""
+		},
+		"ds_cases_deaths_raw_csv_http_properties_typeProperties_url": {
+			"value": "https://raw.githubusercontent.com/hbuddana/Azure_Data_Factory_COVID-19_Reporting/refs/heads/main/dataset/ds_ecdc_file_list.json"
+		},
+		"k21covidstorageacct19_gen2_properties_typeProperties_url": {
+			"value": "https://k21covidstorageacct19.dfs.core.windows.net/"
+		}
+	}
+}

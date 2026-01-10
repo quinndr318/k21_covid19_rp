@@ -1,0 +1,28 @@
+{
+	"name": "pl_process_population_data_activity_run",
+	"properties": {
+		"activities": [
+			{
+				"name": "Execute population Transformation",
+				"type": "DatabricksNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/quinn@k21academy1.mail.onmicrosoft.com/set-up/mount_storage.py"
+				},
+				"linkedServiceName": {
+					"referenceName": "DemoBrics",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"annotations": []
+	}
+}

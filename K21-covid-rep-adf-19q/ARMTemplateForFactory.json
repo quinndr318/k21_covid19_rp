@@ -19,6 +19,14 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'ls_k21covidstorageacct19'"
 		},
+		"ls_db_covid_cluster_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'ls_db_covid_cluster'"
+		},
+		"DemoBrics_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'DemoBrics'"
+		},
 		"ds_cases_deaths_raw_csv_http_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://raw.githubusercontent.com/hbuddana/Azure_Data_Factory_COVID-19_Reporting/refs/heads/main/dataset/ds_ecdc_file_list.json"
@@ -26,6 +34,10 @@
 		"k21covidstorageacct19_gen2_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://k21covidstorageacct19.dfs.core.windows.net/"
+		},
+		"DemoBrics_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "0109-031712-6p2bj2xu"
 		}
 	},
 	"variables": {
@@ -1438,6 +1450,78 @@
 				"[concat(variables('factoryId'), '/datasets/ds_dim_data_lookup')]",
 				"[concat(variables('factoryId'), '/datasets/ds_hospital_admissions_weekly_csv')]"
 			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ls_db_covid_cluster')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureDatabricksDeltaLake",
+				"typeProperties": {
+					"domain": "https://adb-7405618962301026.6.azuredatabricks.net",
+					"clusterId": "0109-031712-6p2bj2xu",
+					"accessToken": {
+						"type": "SecureString",
+						"value": "[parameters('ls_db_covid_cluster_accessToken')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pl_process_population_data_activity_run')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Execute population Transformation",
+						"type": "DatabricksNotebook",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Users/quinn@k21academy1.mail.onmicrosoft.com/set-up/mount_storage.py"
+						},
+						"linkedServiceName": {
+							"referenceName": "DemoBrics",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/DemoBrics')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DemoBrics')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureDatabricks",
+				"typeProperties": {
+					"domain": "https://adb-7405618962301026.6.azuredatabricks.net",
+					"accessToken": {
+						"type": "SecureString",
+						"value": "[parameters('DemoBrics_accessToken')]"
+					},
+					"existingClusterId": "[parameters('DemoBrics_properties_typeProperties_existingClusterId')]"
+				}
+			},
+			"dependsOn": []
 		}
 	]
 }

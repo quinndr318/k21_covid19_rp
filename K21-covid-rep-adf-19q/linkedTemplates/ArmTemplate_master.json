@@ -19,6 +19,14 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'ls_k21covidstorageacct19'"
 		},
+		"ls_db_covid_cluster_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'ls_db_covid_cluster'"
+		},
+		"DemoBrics_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'DemoBrics'"
+		},
 		"ds_cases_deaths_raw_csv_http_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://raw.githubusercontent.com/hbuddana/Azure_Data_Factory_COVID-19_Reporting/refs/heads/main/dataset/ds_ecdc_file_list.json"
@@ -26,6 +34,10 @@
 		"k21covidstorageacct19_gen2_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://k21covidstorageacct19.dfs.core.windows.net/"
+		},
+		"DemoBrics_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "0109-031712-6p2bj2xu"
 		},
 		"containerUri": {
 			"type": "string",
@@ -63,11 +75,20 @@
 					"ls_k21covidstorageacct19_connectionString": {
 						"value": "[parameters('ls_k21covidstorageacct19_connectionString')]"
 					},
+					"ls_db_covid_cluster_accessToken": {
+						"value": "[parameters('ls_db_covid_cluster_accessToken')]"
+					},
+					"DemoBrics_accessToken": {
+						"value": "[parameters('DemoBrics_accessToken')]"
+					},
 					"ds_cases_deaths_raw_csv_http_properties_typeProperties_url": {
 						"value": "[parameters('ds_cases_deaths_raw_csv_http_properties_typeProperties_url')]"
 					},
 					"k21covidstorageacct19_gen2_properties_typeProperties_url": {
 						"value": "[parameters('k21covidstorageacct19_gen2_properties_typeProperties_url')]"
+					},
+					"DemoBrics_properties_typeProperties_existingClusterId": {
+						"value": "[parameters('DemoBrics_properties_typeProperties_existingClusterId')]"
 					}
 				}
 			},

@@ -27,6 +27,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accessToken' of 'DemoBrics'"
 		},
+		"ls_sql_covid_db_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'ls_sql_covid_db'"
+		},
 		"ds_cases_deaths_raw_csv_http_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://raw.githubusercontent.com/hbuddana/Azure_Data_Factory_COVID-19_Reporting/refs/heads/main/dataset/ds_ecdc_file_list.json"
@@ -38,6 +42,18 @@
 		"DemoBrics_properties_typeProperties_existingClusterId": {
 			"type": "string",
 			"defaultValue": "0109-031712-6p2bj2xu"
+		},
+		"ls_sql_covid_db_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "k21-covid-rep-srv-19.database.windows.net"
+		},
+		"ls_sql_covid_db_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "k21-covid-db-19"
+		},
+		"ls_sql_covid_db_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "sqladmin"
 		},
 		"containerUri": {
 			"type": "string",
@@ -81,6 +97,9 @@
 					"DemoBrics_accessToken": {
 						"value": "[parameters('DemoBrics_accessToken')]"
 					},
+					"ls_sql_covid_db_password": {
+						"value": "[parameters('ls_sql_covid_db_password')]"
+					},
 					"ds_cases_deaths_raw_csv_http_properties_typeProperties_url": {
 						"value": "[parameters('ds_cases_deaths_raw_csv_http_properties_typeProperties_url')]"
 					},
@@ -89,6 +108,15 @@
 					},
 					"DemoBrics_properties_typeProperties_existingClusterId": {
 						"value": "[parameters('DemoBrics_properties_typeProperties_existingClusterId')]"
+					},
+					"ls_sql_covid_db_properties_typeProperties_server": {
+						"value": "[parameters('ls_sql_covid_db_properties_typeProperties_server')]"
+					},
+					"ls_sql_covid_db_properties_typeProperties_database": {
+						"value": "[parameters('ls_sql_covid_db_properties_typeProperties_database')]"
+					},
+					"ls_sql_covid_db_properties_typeProperties_userName": {
+						"value": "[parameters('ls_sql_covid_db_properties_typeProperties_userName')]"
 					}
 				}
 			},
